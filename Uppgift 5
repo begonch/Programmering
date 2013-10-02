@@ -1,0 +1,51 @@
+package
+{
+        import flash.display.Sprite;
+        import flash.events.Event;
+        import flash.text.TextField;
+       
+        public class Main extends Sprite
+        {
+               
+                public function Main():void
+                {
+                        if (stage) init();
+                        else addEventListener(Event.ADDED_TO_STAGE, init);
+                }
+               
+                private function init(e:Event = null):void
+                {
+                        removeEventListener(Event.ADDED_TO_STAGE, init);
+                        // entry point
+                        var playerHP:int = 100;
+                        var enemyHP:int = 100;
+                        var playerAtt:int = 10;
+                        var enemyAtt:int = 10;
+                        var playerName:String = "Filip";
+                        var enemyName:String = "nazis";
+                        var playerAttack:int;
+                        var enemyAttack:int;
+                        var t:TextField = new TextField;
+                       
+                        addChild(t)
+                       
+                        t.wordWrap;
+                        t.border = true;
+                        t.height = 600;
+                        t.width = 400;
+                       
+                        for (var i:int = 0; i < 5; i++)
+                        {
+                                playerAttack = playerAtt * Math.random() + 15;
+                                enemyAttack =  enemyAtt * Math.random() + 15;
+                               
+                                playerHP -= enemyAttack;
+                                enemyHP -= playerAttack;
+                               
+                                t.appendText("Round: " + String(i + 1)+ "\n" + playerName + " hits " + enemyName + " for " + playerAttack + " now " + enemyName + " only have " + enemyHP + "HP left." + "\n" + enemyName + " hits " + playerName + " for " + enemyAttack + " now " + playerName + " only have " + playerHP + "HP left." + "\n" + "\n")
+                        }
+                }
+               
+        }
+       
+}
