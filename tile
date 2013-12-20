@@ -1,0 +1,66 @@
+package  
+{
+	import flash.display.Bitmap;
+	import flash.display.Sprite;
+	import flash.text.TextField;
+	/**
+	 * ...
+	 * @author Filip Asph-Dahlin 
+	 */
+	public class Tile extends Sprite
+	{
+		public var scoreText:TextField = new TextField();
+		public var score:int = 0;
+		
+		
+		
+			[Embed(source="Hit.png")]
+			private var HitImage:Class;
+			[Embed(source="Water.png")]
+			private var WaterImage:Class;
+			[Embed(source="Miss.png")]
+			private var MissImage:Class;
+		
+		
+		
+			public 	var isShip:Boolean = false;
+		
+			public static const WATER:int 		= 1;
+			public static const MISS:int 		= 2;
+			public static const HIT:int 		= 3;
+		
+			public static const TILE_SIDE:int 	= 47;
+		
+		public function Tile() 
+		{
+			this.graphics.beginBitmapFill(Bitmap(new WaterImage()).bitmapData);
+			this.graphics.drawRect(0, 0, TILE_SIDE	, TILE_SIDE);
+			this.graphics.endFill();
+				
+		}
+		
+		
+		public function clicked():void 
+		{
+			if (this.isShip) 
+			{
+				this.graphics.clear();
+				this.graphics.beginBitmapFill(Bitmap(new HitImage()).bitmapData);
+				this.graphics.drawRect(0, 0, TILE_SIDE, TILE_SIDE);
+				this.graphics.endFill();
+				
+			}
+			
+			else
+			{
+				this.graphics.clear();
+				this.graphics.beginBitmapFill(Bitmap(new MissImage()).bitmapData);
+				this.graphics.drawRect(0, 0, TILE_SIDE, TILE_SIDE);
+				this.graphics.endFill();
+			}
+			
+		}
+		
+	}
+
+}
